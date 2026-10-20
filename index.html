@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 class="text-3xl font-bold">Algoritmos de Encriptación</h1>
+
+  <label for="encryption-text" class="block mt-4 mb-2 font-semibold">Texto a encriptar:</label>
+  <textarea class="w-full h-40 p-2 border border-gray-300 rounded" placeholder="Ingrese el texto a encriptar" id="encryption-text"></textarea>
+  <br>
+  <label for="encryption-algorithm" class="block mt-4 mb-2 font-semibold">Algoritmo de encriptación:</label>
+  <select class="w-full p-2 border border-gray-300 rounded" id="encryption-algorithm">
+    <option value="oneTimePad">One-Time Pad</option>
+    <option value="aes">AES</option>
+    <option value="rsa">RSA</option>
+    <option value="blowfish">Blowfish</option>
+  </select>
+  <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded" id="encrypt-btn">Encriptar</button>
+  <label for="encrypted-text" class="block mt-4 mb-2 font-semibold">Texto encriptado:</label>
+  <textarea class="w-full h-40 p-2 border border-gray-300 rounded mt-4" placeholder="Texto encriptado" id="encrypted-text" readonly></textarea>
+  <script src="js/app.js"></script>
+</body>
+</html>
