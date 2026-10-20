@@ -1,29 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  
-  <title>Document</title>
+  <title>Algoritmos - Encriptación</title>
 </head>
 
-<body>
-  <h1 class="text-3xl font-bold">Algoritmos de Encriptación</h1>
+<body class="min-h-screen bg-slate-100 text-slate-800 antialiased">
+  <main class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
 
-  <label for="encryption-text" class="block mt-4 mb-2 font-semibold">Texto a encriptar:</label>
-  <textarea class="w-full h-40 p-2 border border-gray-300 rounded" placeholder="Ingrese el texto a encriptar" id="encryption-text"></textarea>
-  <br>
-  <label for="encryption-algorithm" class="block mt-4 mb-2 font-semibold">Algoritmo de encriptación:</label>
-  <select class="w-full p-2 border border-gray-300 rounded" id="encryption-algorithm">
-    <option value="oneTimePad">One-Time Pad</option>
-    <option value="aes">AES</option>
-    <option value="rsa">RSA</option>
-    <option value="blowfish">Blowfish</option>
-  </select>
-  <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded" id="encrypt-btn">Encriptar</button>
-  <label for="encrypted-text" class="block mt-4 mb-2 font-semibold">Texto encriptado:</label>
-  <textarea class="w-full h-40 p-2 border border-gray-300 rounded mt-4" placeholder="Texto encriptado" id="encrypted-text" readonly></textarea>
-  <script src="js/app.js"></script>
+    <!-- Header -->
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        Algoritmos de Encriptación
+      </h1>
+      <p class="mt-2 text-sm text-slate-500">
+        Selecciona un algoritmo, ingresa el texto y la clave para cifrar o descifrar.
+      </p>
+    </header>
+
+    <!-- Grid principal -->
+    <form id="crypto-form" class="grid gap-6 lg:grid-cols-2">
+      <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <h2 class="text-lg font-semibold text-slate-900">Entrada</h2>
+        <div class="mt-4">
+          <label for="encryption-algorithm" class="block text-sm font-medium text-slate-700">
+            Algoritmo de encriptación
+          </label>
+          <select
+            id="encryption-algorithm"
+            class="mt-1 w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none">
+            <option value="oneTimePad">One-Time Pad</option>
+            <option value="transInint">Transposición Ininterrumpida</option>
+          </select>
+        </div>
+
+        <!-- Texto -->
+        <div class="mt-4">
+          <label for="encryption-text" class="flex items-center justify-between text-sm font-medium text-slate-700">
+            <span>Texto a encriptar</span>
+          </label>
+          <textarea
+            id="encryption-text"
+            rows="6"
+            placeholder="Ingrese el texto a encriptar"
+            class="mt-1 w-full resize-y rounded-lg border border-slate-300 p-3 text-sm shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Clave -->
+        <div class="mt-4">
+          <label for="encryption-key" class="flex items-center justify-between text-sm font-medium text-slate-700">
+            <span>Clave de encriptación</span>
+          </label>
+          <textarea
+            id="encryption-key"
+            rows="4"
+            placeholder="Ingrese la clave de encriptación"
+            class="mt-1 w-full resize-y rounded-lg border border-slate-300 p-3 text-sm shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none"></textarea>
+          <p id="key-status" class="mt-2 hidden text-xs"></p>
+        </div>
+
+        <!-- Botones -->
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button
+            type="button"
+            id="encrypt-btn"
+            class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300 focus:outline-none">
+            🔒 Encriptar
+          </button>
+          <button
+            type="button"
+            id="decrypt-btn"
+            class="inline-flex items-center gap-2 rounded-lg bg-slate-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 focus:ring-2 focus:ring-slate-300 focus:outline-none">
+            🔓 Desencriptar
+          </button>
+          <button
+            type="button"
+            id="clear-btn"
+            class="inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-600 shadow-sm transition hover:bg-slate-50 focus:ring-2 focus:ring-slate-200 focus:outline-none">
+            Limpiar
+          </button>
+        </div>
+      </section>
+
+      <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold text-slate-900">Resultado</h2>
+        </div>
+
+        <label for="encrypted-text" class="mt-4 block text-sm font-medium text-slate-700">
+          Texto desencriptado
+        </label>
+        <textarea
+          id="encrypted-text"
+          rows="13"
+          placeholder="El resultado aparecerá aquí…"
+          class="mt-1 w-full resize-none rounded-lg border border-slate-300 bg-slate-50 p-3 font-mono text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"></textarea>
+
+        <!-- Alertas -->
+        <div id="alert" class="mt-3 hidden rounded-lg p-3 text-sm" role="alert"></div>
+      </section>
+    </form>
+
+    <footer class="mt-10 text-center text-xs text-slate-400">
+      Elaborado por ...
+    </footer>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
