@@ -1,6 +1,6 @@
 // js/app.js
 import { OneTimePad } from "./algorithms/oneTimePad.js";
-import { InterruptedTransposition } from "./algorithms/transposition.js";
+import { UninterruptedTransposition } from "./algorithms/transposition.js";
 
 const messageInput = document.getElementById('encryption-text');
 const keyInput = document.getElementById('encryption-key');
@@ -18,7 +18,7 @@ const operationInputs = document.querySelectorAll('input[name="operation"]');
 
 const ciphers = {
     oneTimePad: new OneTimePad(),
-    transposition: new InterruptedTransposition()
+    transposition: new UninterruptedTransposition()
 };
 let cipher = ciphers.oneTimePad;
 let autoRunTimer;
